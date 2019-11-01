@@ -15,7 +15,7 @@
 
 ## 教程
 
-![DEMO](images/demo1.jpg)
+![DEMO](images/demo1.png)
 
 [Django之入门 CMDB系统  (一) 基础环境](1.md)
 
