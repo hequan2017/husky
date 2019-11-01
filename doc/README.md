@@ -10,7 +10,7 @@
 
 > 教程项目地址: https://github.com/hequan2017/husky/
 
-> 教程文档地址: https://github.com/hequan2017/husky/doc/README.md
+> 教程文档地址: https://github.com/hequan2017/husky/tree/master/doc
 
 
 ## 教程
