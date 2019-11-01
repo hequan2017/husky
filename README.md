@@ -23,4 +23,4 @@
 
 [Django之入门 CMDB系统  (三) 登录注销](doc/3.md)
 
-[Django之入门 CMDB系统  (四) 增删改成](doc/4.md)
+[Django之入门 CMDB系统  (四) 增删改查](doc/4.md)
