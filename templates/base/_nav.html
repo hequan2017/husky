@@ -37,22 +37,22 @@
             </li>
 
 
-            <li class="assets">
+            <li class="asset">
                 <a href="#"> <i class="fa fa-calendar-minus-o"></i> <span class="nav-label">资产管理</span> <span class="fa arrow"> </span></a>
 
 
-{#                <ul class="nav nav-second-level">#}
-{#                    {% if perms.assets.add_ecs %}#}
-{#                        <li class="ecs-create">#}
-{#                            <a href="{% url "assets:ecs-create" %}">添加资产</a>#}
-{#                        </li>#}
-{#                    {% endif %}#}
-{#                    {% if perms.assets.view_ecs %}#}
-{#                        <li class="ecs-list">#}
-{#                            <a href="{% url "assets:ecs-list" %}">资产列表</a>#}
-{#                        </li>#}
-{#                    {% endif %}#}
-{#                </ul>#}
+                <ul class="nav nav-second-level">
+                    {% if perms.asset.add_ecs %}
+                        <li class="ecs-create">
+                            <a href="{% url "asset:ecs-create" %}">添加资产</a>
+                        </li>
+                    {% endif %}
+                    {% if perms.asset.view_ecs %}
+                        <li class="ecs-list">
+                            <a href="{% url "asset:ecs-list" %}">资产列表</a>
+                        </li>
+                    {% endif %}
+                </ul>
 
             </li>
 

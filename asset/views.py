@@ -11,19 +11,56 @@ from django.views.generic import ListView, View, DetailView, CreateView, UpdateV
 from asset.models import Ecs
 from asset.form import EcsForm
 
-logger = logging.getLogger('assets')
+logger = logging.getLogger('asset')
+
+from functools import wraps
 
 
-## 关于 cbv 的 文档 http://ccbv.co.uk/projects/Django/2.1/django.views.generic.edit/
+def get_list(function):
+    """
+    列表页面  获取 搜索
+    :param function: self.model
+    :return:
+    """
+
+    @wraps(function)
+    def wrapped(self):
+        # user = self.request.user
+        # groups = [x['name'] for x in self.request.user.groups.values()]
+        # request_type = self.request.method
+        # model = str(self.model._meta).split(".")[1]
+
+        filter_dict = {}
+        not_list = ['page', 'order_by', 'csrfmiddlewaretoken']
+        for k, v in dict(self.request.GET).items():
+            if [i for i in v if i != ''] and (k not in not_list):
+                if '__in' in k:
+                    filter_dict[k] = v
+                else:
+                    filter_dict[k] = v[0]
+
+        self.filter_dict = filter_dict
+        self.queryset = self.model.objects.filter(**filter_dict).order_by('-id')
+        order_by_val = self.request.GET.get('order_by', '')
+        if order_by_val:
+            self.queryset = self.queryset.order_by(order_by_val) if self.queryset else self.queryset
+        result = function(self)
+        return result
+
+    return wrapped
+
+
+
+#关于 cbv 的 文档 http://ccbv.co.uk/projects/Django/2.1/django.views.generic.edit/
 class EcsCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     """
     Ecs 创建
     """
-    permission_required = ('assets.add_ecs',)
+    permission_required = ('asset.add_ecs',)
     model = Ecs
     form_class = EcsForm
-    template_name = 'assets/ecs-create.html'
-    success_url = reverse_lazy('assets:ecs-list')
+    template_name = 'asset/ecs-create.html'
+    success_url = reverse_lazy('asset:ecs-list')
 
     def get_context_data(self, **kwargs):
         context = {}
@@ -52,8 +89,8 @@ class EcsCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 
 
 class EcsListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
-    permission_required = ('assets.view_ecs',)
-    template_name = 'assets/ecs-list.html'
+    permission_required = ('asset.view_ecs',)
+    template_name = 'asset/ecs-list.html'
     model = Ecs
     queryset = Ecs.objects.get_queryset().order_by('-id')
 
@@ -79,11 +116,11 @@ class EcsUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     """
     Ecs 更新
     """
-    permission_required = ('assets.change_ecs',)
+    permission_required = ('asset.change_ecs',)
     model = Ecs
     form_class = EcsForm
-    template_name = 'assets/ecs-create.html'
-    success_url = reverse_lazy('assets:ecs-list')
+    template_name = 'asset/ecs-create.html'
+    success_url = reverse_lazy('asset:ecs-list')
 
     def get_context_data(self, **kwargs):
         context = {}
@@ -102,10 +139,10 @@ class EcsUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 
 
 class EcsDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
-    permission_required = ('assets.view_ecs',)
+    permission_required = ('asset.view_ecs',)
     model = Ecs
     form_class = EcsForm
-    template_name = 'assets/ecs-detail.html'
+    template_name = 'asset/ecs-detail.html'
 
     def get_context_data(self, **kwargs):
         pk = self.kwargs.get(self.pk_url_kwarg, None)

@@ -23,4 +23,5 @@ urlpatterns = [
     path('', index),
     path('index', index, name="index"),
     path('system/', include('system.urls', namespace='system')),
+    path('asset/', include('asset.urls', namespace='asset'))
 ]

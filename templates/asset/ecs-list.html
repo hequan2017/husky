@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        <form id="cha" class="form-horizontal" action="{% url 'assets:ecs-list' %}" method="GET">
+                        <form id="cha" class="form-horizontal" action="{% url 'asset:ecs-list' %}" method="GET">
                             {% csrf_token %}
                             <div class="row">
 
@@ -143,15 +143,15 @@
                                                 <div class="">{{ row.c_time |  date:'Y-m-d' }}</div>
                                             </td>
                                             <td>
-                                          {% if perms.assets.view_ecs %}
+                                          {% if perms.asset.view_ecs %}
                                                     <a class="btn btn-success  btn-xs "
-                                                       href="{% url  "assets:ecs-detail" pk=row.id %}">详情</a>
+                                                       href="{% url  "asset:ecs-detail" pk=row.id %}">详情</a>
                                                 {% endif %}
-                                                {% if perms.assets.change_ecs %}
+                                                {% if perms.asset.change_ecs %}
                                                     <a class="btn btn-primary  btn-xs "
-                                                       href="{% url  "assets:ecs-update" pk=row.id %}">编辑</a>
+                                                       href="{% url  "asset:ecs-update" pk=row.id %}">编辑</a>
                                                 {% endif %}
-                                                {% if perms.assets.delete_ecs %}
+                                                {% if perms.asset.delete_ecs %}
                                                     <a class="btn btn-danger  btn-xs ecs-delete"
                                                        href="#">删除</a>
                                                 {% endif %}
@@ -165,7 +165,7 @@
                                              <div style="text-align:center;">
 
                                     <nav class="pagination">
-                                        <li><a href="{% url "assets:ecs-list" %}?page=1">首页 </a></li>
+                                        <li><a href="{% url "asset:ecs-list" %}?page=1">首页 </a></li>
 
                                         {% if ecs_list.has_previous %}
                                             <li class="long"><a
@@ -192,7 +192,7 @@
                                             </li>
                                         {% endif %}
                                         <li>
-                                            <a href="{% url "assets:ecs-list" %}?page={{ ecs_list.paginator.num_pages }}">尾页 </a>
+                                            <a href="{% url "asset:ecs-list" %}?page={{ ecs_list.paginator.num_pages }}">尾页 </a>
                                         </li>
                                         <li><span
                                                 style="color: #0a0a0a">总: &nbsp;{{ ecs_list.paginator.num_pages }} 页</span>
@@ -225,7 +225,7 @@
 
         <script>
             window.onload = function () {   // 固定左边导航栏
-                $(".assets").addClass("active");
+                $(".asset").addClass("active");
                 $(".ecs-list").addClass("active");
             };
 
@@ -251,7 +251,7 @@
                         closeOnConfirm: false
                     }, function () {
                         $.ajax({
-                            url: "{% url 'assets:ecs-delete' %}",
+                            url: "{% url 'asset:ecs-delete' %}",
                             type: 'POST',
                             data: {'nid': id},
                             success: function (data) {
