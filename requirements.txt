@@ -1,6 +1,6 @@
 backcall==0.1.0
 decorator==4.3.0
-Django==2.2.6
+Django==2.2.8
 django-bootstrap3==11.1.0
 ipython==6.4.0
 ipython-genutils==0.2.0
