@@ -32,6 +32,11 @@ class CustomBackend(ModelBackend):
             return None
 
 
+class DisableCSRFCheck(object):
+    def process_request(self, request):
+        setattr(request, '_dont_enforce_csrf_checks', True)
+
+
 def login_view(request):
     """
     登录

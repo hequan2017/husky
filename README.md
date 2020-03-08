@@ -33,5 +33,9 @@
 [Django之入门 CMDB系统  (六) 前后端分离之后端](doc/6.md)
 
 
-## 基本
+##  动态菜单
+* router 
+* 参考的如下文档 
+> https://mp.weixin.qq.com/s?__biz=MzU1OTYzODA4Mw==&mid=2247484250&idx=1&sn=981024ac0580d8a3eba95742bd32b268&chksm=fc157076cb62f960aa9d88e38e584adfd3025f635d296a670f9f8c68a57229e9bd4a1b3e9d20&mpshare=1&scene=1&srcid=&sharer_sharetime=1582904507372&sharer_shareid=ec5f8f73cf3846c67538a33aa69ae2ae#rd
+
 
