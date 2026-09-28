@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_filters',
     'workflows',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
