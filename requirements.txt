@@ -1,29 +1,13 @@
-asgiref==3.2.3
-backcall==0.1.0
-decorator==4.3.0
-Django==3.0.4
-django-bootstrap3==12.0.3
-django-cors-headers==3.2.1
-django-pure-pagination==0.3.0
-ipython==6.4.0
-ipython-genutils==0.2.0
-jedi==0.12.0
-parso==0.2.1
-pexpect==4.6.0
-pickleshare==0.7.4
-prompt-toolkit==1.0.15
-ptyprocess==0.5.2
-Pygments==2.2.0
-PyMySQL==0.9.3
-pytz==2018.4
-simplegeneric==0.8.1
-six==1.11.0
-sqlparse==0.3.0
-traitlets==4.3.2
-wcwidth==0.1.7
-captcha
-django-crispy-forms
-django-filter
-django-pure-pagination
+# husky Django 入门 CMDB 教程 —— 依赖清单（2026-09 安全修复版）
+# 原 pip freeze 快照重写为直接依赖；运行要求 Python >= 3.10
+# Django 3.0 -> 5.2；移除未使用的 ipython/Pygments/sqlparse 等 freeze 残留
+
+Django==5.2.16
 djangorestframework
-django-rest-swagger
+drf-spectacular
+django-filter
+django-bootstrap3
+django-cors-headers
+django-pure-pagination==0.3.0
+captcha
+PyMySQL==1.1.2
