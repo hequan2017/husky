@@ -16,14 +16,9 @@ Including another URLconf
 
 from system.views import index
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from rest_framework.authtoken import views
-from rest_framework.documentation import include_docs_urls
-from django.conf.urls import include
-
-
-API_TITLE = '文档'
-API_DESCRIPTION = '文档'
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 
 urlpatterns = [
@@ -34,8 +29,9 @@ urlpatterns = [
     path('asset/', include('asset.urls', namespace='asset')),
     path('router/', include('router.urls', namespace='router')),
     path('token', views.obtain_auth_token),
-    path('docs', include_docs_urls(title=API_TITLE, description=API_DESCRIPTION, authentication_classes=[],
-                                   permission_classes=[])),
+    # Swagger UI 与 OpenAPI Schema（drf-spectacular，替代 DRF 已移除的 include_docs_urls）
+    path('docs', SpectacularSwaggerView.as_view(url_name='docs2'), name='docs'),
+    path('docs2', SpectacularAPIView.as_view(), name='docs2'),
 ]
 
 
